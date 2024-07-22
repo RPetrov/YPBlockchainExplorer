@@ -19,6 +19,7 @@ import retrofit2.create
 import retrofit2.Callback
 import retrofit2.Response
 import yp.ypblockchainexplorer.dto.WalletModel
+import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,7 +48,9 @@ class MainActivity : AppCompatActivity() {
                 retrofit.get(inputField.text.toString())
                     .enqueue(object : Callback<WalletModel> {
                         override fun onResponse(p0: Call<WalletModel>, p1: Response<WalletModel>) {
-                            balanceText.text = p1.body()?.finalBalance.toString()
+                            val a = BigDecimal(100_000_000)
+                            val newBalance = p1.body()?.finalBalance?.let { BigDecimal(it).divide(a) }
+                            balanceText.text = newBalance.toString()
                             Log.d("ErrorTag", "удачный запрос")
                         }
 
