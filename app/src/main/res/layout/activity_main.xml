@@ -6,25 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/input_field"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="input your question"
         android:imeOptions="actionDone"
         android:singleLine="true"
         android:text="34xp4vRoCGJym3xR7yCVPFHoCNxv4Twseo"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="input" />
+        tools:text="input"/>
 
     <TextView
         android:id="@+id/balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true" />
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
 
 </LinearLayout>
