@@ -5,11 +5,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     private val editText by lazy {
         findViewById<EditText>(R.id.editText)
+    }
+    private val recyclerView by lazy {
+        findViewById<RecyclerView>(R.id.recycler_view)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun searchInformation(wallet: String){
         blockChainApi.getWalletInfo(wallet).enqueue(object : Callback<BlockChainWallet> {
             override fun onResponse(call: Call<BlockChainWallet>, response: Response<BlockChainWallet>) {
-                Log.d("MyTag", response.body().toString())
+                recyclerView.adapter = TransactionsAdapter(response.body()!!.txs)
             }
 
             override fun onFailure(p0: Call<BlockChainWallet>, p1: Throwable) {
